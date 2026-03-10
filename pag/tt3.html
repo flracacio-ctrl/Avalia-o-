@@ -17,7 +17,16 @@
       background: #ffffff;
     }
 
-    
+    .t3{
+
+      
+     
+      background: #5f6166;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: center;
+       
+    }
     .header {
       position: sticky;
       top: 0;
@@ -102,11 +111,147 @@
       background: #5c5d5d;
       color: #000;
     }
+
+.fotos {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0;
+}
+
+.foto {
+    
+    width: 180px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #000;
+}
+ 
+.textos {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px 0;
+}
+
+.texto {
+    background-color: #6d7069;
+    width: 45%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #000;
+}
+
+ 
+.footer {
+    background-color: #3e4039;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+   .cards {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .card {
+            width: 30%;
+           
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+.cardi {
+           
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+}
+
+         
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+       
+        .conteudo {
+            display: flex;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .box-texto {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 50%;
+        }
+
+        .box-texto h2 {
+            margin-bottom: 10px;
+            color: #0f172a;
+        }
+
+
+        footer {
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+
+            .cards {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .conteudo {
+                flex-direction: column;
+            }
+            }
+  
+
   </style>
 </head>
 
 <body>
-
+<h1 class="t3">Tarefa 3</h1>
 <header class="header">
   <h1><a href="../index.html">HOME</a></h1>
 
@@ -116,9 +261,31 @@
     <a href="trimestre3.html">III Trimestre.</a>
   </nav>
 </header>
+  
+    <section class="fotos">
+        <img src="../files/WhatsApp Image 2026-03-07 at 12.03.30.jpeg" alt="" class="foto">
+        <img src="../files/WhatsApp Image 2026-03-07 at 12.03.31 (1).jpeg" alt="" class="foto">
+        <img src="../files/WhatsApp Image 2026-03-07 at 12.03.31.jpeg" alt="" class="foto">
+    </section>
+ 
+    <section class="textos">
+        <div class="texto">
+          <p>
+  Experimente o sabor irresistível dos nossos hambúrgueres preparados com ingredientes frescos e selecionados. Cada hambúrguer é feito com carne suculenta, pão macio e acompanhamentos deliciosos que garantem uma explosão de sabor em cada mordida.
+</p>
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam perspiciatis, vitae delectus nam aut quos accusantium minus animi corporis quibusdam optio sit ipsum
-   sed repudiandae culpa? Maxime fugit asperiores mollitia.</p>
+        </div>
+
+        <div class="texto">
+<p>
+Perfeitos para qualquer momento do dia, os nossos hambúrgueres combinam qualidade, sabor e um preparo cuidadoso para oferecer a melhor experiência gastronômica. Faça já a sua encomenda e desfrute de um hambúrguer saboroso, preparado especialmente para si.
+</p>
+</div>
+    </section>
+ 
+    <footer class="footer">
+       2026/todos os direitos reservados
+    </footer>
 
 </body>
 </html>
