@@ -1,112 +1,286 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I Trimestre</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Sistema de Notas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+        body {
+            background: #98999b;
+        }
 
-    body {
-      background: #ffffff;
-    }
+        .header {
+            background-color: #98999b;
+            position: sticky;
+            top: 0;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            z-index: 1000;
+        }
 
-    
-    .header {
-      position: sticky;
-      top: 0;
-      background: #696a6d;
-      padding: 15px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .header a:hover {
+            background: #004ef6;
+            color: #000;
+        }
 
-    .header h1 a {
-      color: #fff;
-      text-decoration: none;
-    }
+        .header h1 a {
+            color: #040404;
+            text-decoration: none;
+            font-size: 20px;
+        }
 
-    nav {
-      display: flex;
-      gap: 10px;
-    }
+        nav {
+            display: flex;
+            gap: 10px;
+        }
 
-    nav a {
-      text-decoration: none;
-      padding: 8px 16px;
-      background: #060606;
-      color: #fff;
-      border-radius: 6px;
-      font-weight: bold;
-    }
+        nav a {
+            text-decoration: none;
+            padding: 8px 16px;
+            background-color: #98999b;
+            color: #090909;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    nav a:hover {
-      background: #646567;
-      color: #000;
-    }
+        nav a:hover {
+            background: #004ef6;
+            color: #000;
+        }
 
-  
-    main {
-      padding: 40px;
-    }
+        main {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
 
-    .trimestre-box {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-    .trimestre-box h2 {
-      margin-bottom: 25px;
-      color: #0f172a;
-    }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
 
-  
-    .trabalhos {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
+        .card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
 
-    .trabalhos a {
-      
-      display: block;
-      margin-bottom: 15px;
-      padding: 15px;
-      text-align: center;
-      background: #080808;
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      
-      transition: 0.3s;
-    }
+        .card h3 {
+            margin-bottom: 15px;
+            color: #004ef6;
+        }
 
-    .trimestres a:hover {
-      background: #646567;
-      color: #000;
-    }
-    
+        .card p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
 
-    .trabalhos a:hover {
-      background: #5c5d5d;
-      color: #000;
-    }
-  </style>
+        .media-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .media-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .media-item:last-child {
+            border-bottom: none;
+        }
+
+        .media-info {
+            flex: 1;
+        }
+
+        .media-nome {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .media-disciplina {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .notas {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .media-valor {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .status {
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .aprovado { color: #28a745; }
+        .recurso { color: #ffc107; }
+        .reprovado { color: #dc3545; }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            text-align: center;
+            background-color: #080808;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: #004ef6;
+            color: #000;
+        }
+    </style>
 </head>
-
 <body>
 
 <header class="header">
+    <h1><a href="ttt3.html">Resultado</a></h1>
+    <nav>
+        <a href="ttt1.html"> Formulário</a>
+        <a href="ttt2.html">Tabela</a>
+    </nav>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Resultado das Médias</h2>
+
+       
+
+        <div id="mediaList" class="media-list">
+            <div class="empty">Nenhum aluno cadastrado</div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="ttt1.html" class="nav-btn"> Formulário</a>
+            <a href="ttt2.html" class="nav-btn">Tabela</a>
+        </div>
+    </div>
+</main>
+
+<script>
+    function getAlunos() {
+        const saved = localStorage.getItem('alunos');
+        return saved ? JSON.parse(saved) : [];
+    }
+
+    function calcularMedia(nota1, nota2, nota3) {
+        return (nota1 + nota2 + nota3) / 3;
+    }
+
+    function getStatus(media) {
+        if (media >= 10) return 'Aprovado';
+        if (media >= 8) return 'Recurso';
+        return 'Reprovado';
+    }
+
+    function updateResults() {
+        const alunos = getAlunos();
+        const mediaList = document.getElementById('mediaList');
+
+        if (alunos.length === 0) {
+            mediaList.innerHTML = '<div class="empty">Nenhum aluno cadastrado</div>';
+            document.getElementById('totalAlunos').textContent = 'Total de alunos: 0';
+            document.getElementById('mediaGeral').textContent = 'Média geral: 0';
+            document.getElementById('aprovados').textContent = '✅ Aprovados (≥10): 0';
+            document.getElementById('recurso').textContent = '⚠️ Recurso (8 a 9): 0';
+            document.getElementById('reprovados').textContent = '❌ Reprovados (0 a 7): 0';
+            return;
+        }
+
+        let somaMedias = 0;
+        let aprovadosCount = 0;
+        let recursoCount = 0;
+        let reprovadosCount = 0;
+
+        mediaList.innerHTML = alunos.map(aluno => {
+            const media = calcularMedia(aluno.nota1, aluno.nota2, aluno.nota3);
+            somaMedias += media;
+            const status = getStatus(media);
+            const statusClass = status === 'Aprovado' ? 'aprovado' : (status === 'Recurso' ? 'recurso' : 'reprovado');
+            
+            if (status === 'Aprovado') aprovadosCount++;
+            else if (status === 'Recurso') recursoCount++;
+            else reprovadosCount++;
+
+            return `
+                <div class="media-item">
+                    <div class="media-info">
+                        <div class="media-nome">${aluno.nome}</div>
+                        <div class="media-disciplina">${aluno.disciplina}</div>
+                        <div class="notas">Notas: ${aluno.nota1.toFixed(1)} | ${aluno.nota2.toFixed(1)} | ${aluno.nota3.toFixed(1)}</div>
+                    </div>
+                    <div>
+                        <span class="media-valor ${statusClass}">${media.toFixed(1)}</span>
+                        <span class="status ${statusClass}">(${status})</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        const mediaGeral = somaMedias / alunos.length;
+        document.getElementById('totalAlunos').textContent = `Total de alunos: ${alunos.length}`;
+        document.getElementById('mediaGeral').textContent = `Média geral: ${mediaGeral.toFixed(1)}`;
+        document.getElementById('aprovados').textContent = `✅ Aprovados (≥10): ${aprovadosCount}`;
+        document.getElementById('recurso').textContent = `⚠️ Recurso (8 a 9): ${recursoCount}`;
+        document.getElementById('reprovados').textContent = `❌ Reprovados (0 a 7): ${reprovadosCount}`;
+    }
+
+    updateResults();
+</script>
+
+</body>
+</html><header class="header">
   <h1><a href="../index.html">HOME</a></h1>
 
   <nav>
